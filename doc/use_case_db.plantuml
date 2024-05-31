@@ -1,0 +1,20 @@
+@startuml
+
+left to right direction
+actor "Microservice.exe" as fc
+rectangle "БД"  {
+  usecase "Сохранить XML ремонта" as UC1
+  usecase "Соханить документы ЭДО" as UC2
+  usecase "Сохранить печатные формы" as UC3
+usecase "Отметить/скинуть отметку отката" as UC4
+usecase "Поставить задачу на автосогласование\n акта хранения/транспортировки" as UC5
+}
+
+
+fc --> UC1
+fc --> UC2
+fc --> UC3
+fc --> UC4
+fc --> UC5
+
+@enduml

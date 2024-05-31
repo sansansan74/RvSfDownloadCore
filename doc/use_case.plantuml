@@ -1,0 +1,16 @@
+@startuml
+
+left to right direction
+actor "Microservice.exe" as fc
+rectangle "API Портала REMONTVAGONOV.RU"  {
+  usecase "Получить XML описание ремонта" as UC1
+  usecase "Загрузить документы ЭДО" as UC2
+  usecase "Загрузить печатные формы" as UC3
+}
+
+
+fc --> UC1
+fc --> UC2
+fc --> UC3
+
+@enduml

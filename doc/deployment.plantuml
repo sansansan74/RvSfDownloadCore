@@ -1,0 +1,24 @@
+@startuml
+
+node "LinuxServer1" {
+[Cron] as [Task Manager]
+[Microservice.exe] 
+}
+
+node "REST_PORTAL" {
+  [API]
+}
+
+node "WINDOWS_SERVER" {
+database "MsSql Server" {
+    [rv_document_store]
+}
+}
+
+[Task Manager] -right-> [Microservice.exe]: запускает каждые 30 мин
+[Microservice.exe] -right-> [API]: импорт ремонтов
+[Microservice.exe] -right-> [API]: импорт ЭДО
+[Microservice.exe] -right-> [API]: импорт PDF
+[Microservice.exe] -down-> [rv_document_store]: сохраняет данные
+
+@enduml

@@ -1,0 +1,33 @@
+@startuml
+
+
+Microservice.exe -> API : запрос перечня измененных ремонтов за период
+API -->Microservice.exe : заголовки измененных ремонтов
+
+group Обработка каждого измененного ремонта
+
+alt СогласованВагонником
+
+Microservice.exe -> API : запрос полных данных по ремонту
+API -->Microservice.exe  : XML ремонта
+
+Microservice.exe -> БД : сохранение данных по ремонту
+
+Microservice.exe -> БД : если был откат по ремонту, скинуть откат
+
+Microservice.exe -> API : запрос документов ЭДО
+API -->Microservice.exe  : документы ЭДО
+Microservice.exe -> БД : сохранение документов ЭДО
+
+Microservice.exe -> API : запрос печатных форм
+API -->Microservice.exe  : печтаные формы
+Microservice.exe -> БД : сохранение печатных форм
+else Не согласован вагонником ранее была ЭДО СФ
+Microservice.exe -> БД : зафиксировать откат
+else Не согласован вагонником ранее не было ЭДО СФ
+Microservice.exe -> Microservice.exe : ничего не делаем
+end
+
+end
+
+@enduml
