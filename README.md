@@ -50,3 +50,20 @@
 7. - */30 * * * * cd /microservices/RvActAutoCommiter && ./RvActAutoCommiter
 
 Если не написать cd /microservices/RvActAutoCommiter && ./RvActAutoCommiter, а указать просто имя скрипта, то он не находит домашней папки и не может считать файл appsettings.json .
+
+# Настройки
+Проставить в файле настроек:
+1. Строку соединения с БД
+  "ConnectionStrings": {
+    "SfStoreConnect": "Server=SPRING;Database=rv_document_store;Trusted_Connection=true;"
+    }
+  
+## Учетные записи и права
+
+* Дать учетной записи права на схему WEB на чтение и выполнение
+* выдать права пользователю, под которым будет запущен сервис в ОС, на чтение папки проекта и запись в папку логов
+* необходимо иметь возможность пользователю, под которым запущен сервис, осуществлять доступ к https://remontvagonov.ru
+
+## От каких подсистем зависит - какие подсистемы использует===
+* от системы remontvagonov.ru
+
